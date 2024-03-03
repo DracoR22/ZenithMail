@@ -1,8 +1,16 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
+import { ClerkProvider } from '@clerk/nextjs'
+import "../shared/styles/globals.css";
+import Providers from "@/shared/utils/providers";
 
-const inter = Inter({ subsets: ["latin"] });
+import localFont from "next/font/local";
+
+const clashDisplay = localFont({
+  src: "../assets/fonts/ClashDisplay-Variable.ttf",
+  variable: "--font-clashDisplay",
+  weight: "700",
+});
+
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,8 +23,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <ClerkProvider>
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={clashDisplay.variable}>
+        <Providers>
+           {children}
+        </Providers>
+      </body>
     </html>
+    </ClerkProvider>
   );
 }
