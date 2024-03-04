@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation"
 import { PropsWithChildren } from "react"
 import { NextUIProvider } from "@nextui-org/react";
 import { useUser } from "@clerk/nextjs";
+import { Toaster } from "react-hot-toast"
 import DashboardSidebar from "../widgets/dashboard/sidebar/dashboard-sidebar";
 
 const Providers = ({ children }: PropsWithChildren) => {
@@ -33,7 +34,7 @@ const Providers = ({ children }: PropsWithChildren) => {
       ) : (
         <>{children}</>
       )}
-      {/* <Toaster position="top-center" reverseOrder={false} /> */}
+      <Toaster position="top-center" reverseOrder={false} />
     </NextUIProvider>
   )
 }

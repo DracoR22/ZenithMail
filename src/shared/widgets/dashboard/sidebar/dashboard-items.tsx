@@ -40,21 +40,21 @@ const DashboardItems = ({ bottomContent }: { bottomContent?: boolean }) => {
         <>
            {sideBarBottomItems.map(
             (item: DashboardSideBarTypes, index: number) => (
-              <Link key={index} className="p-2 py-5 flex items-center"
+              <Link key={index} className={`p-2 py-2 flex items-center font-medium hover:bg-indigo-500/20 transition ${item.url === activeRoute && "bg-indigo-500/20"}`}
                 href={item.url === "/" ? `/subscribe?username=${user?.username}` : item.url}>
-                <span className={`text-3xl mr-2 ${item.url === activeRoute && "text-[#463bbd]"}`}>
+                <span className={`text-xl mr-2 ${item.url === activeRoute && "text-[#463bbd]"}`}>
                   {item.icon}
                 </span>
-                <span className={`text-xl mr-2 ${item.url === activeRoute && "text-[#463bbd]"}`}>
+                <span className={`text-lg mr-2 ${item.url === activeRoute && "text-[#463bbd]"}`}>
                   {item.title}
                 </span>
               </Link>
             )
           )}
           {/* SIGN OUT */}
-          <div className="p-2 py-5 flex items-center cursor-pointer border-b" onClick={LogoutHandler}>
-            <span className="text-3xl mr-2">{ICONS.logOut}</span>
-            <span className="text-xl">Sign Out</span>
+          <div className="p-2 py-2 font-medium flex items-center cursor-pointer border-b" onClick={LogoutHandler}>
+            <span className="text-xl mr-2">{ICONS.logOut}</span>
+            <span className="text-lg">Sign Out</span>
           </div>
           {/* FOOTER */}
           <br />
@@ -63,7 +63,7 @@ const DashboardItems = ({ bottomContent }: { bottomContent?: boolean }) => {
             ZenithMail
           </div>
           <p className="text-sm text-center pt-5 pb-10">
-            © 2024 Becodemy, Inc. All rights reserved.
+            © 2024 ZenithMail, Inc. All rights reserved.
           </p>
          </>
        )}
