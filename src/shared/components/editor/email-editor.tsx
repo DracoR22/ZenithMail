@@ -1,11 +1,14 @@
 'use client'
 
+import { GetEmailDetails } from "@/actions/get-email-details";
+import { saveEmail } from "@/actions/save-email";
 import { DefaultJsonData } from "@/assets/mails/default";
 import { useClerk } from "@clerk/nextjs";
 import { Button } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import EmailEditor, { EditorRef, EmailEditorProps } from "react-email-editor"
+import toast from "react-hot-toast";
 
 const EmailEditorComponent = ({ subjectTitle }: { subjectTitle: string }) => {
 
@@ -23,18 +26,51 @@ const EmailEditorComponent = ({ subjectTitle }: { subjectTitle: string }) => {
       const { design, html } = data;
       setJsonData(design);
     });
-  };
+  };   
+
+  useEffect(() => {
+    getEmailDetails();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
 
   const onReady: EmailEditorProps["onReady"] = () => {
     const unlayer: any = emailEditorRef.current?.editor;
     unlayer.loadDesign(jsonData);
   };
 
-  const saveDraft = () => {}
+  const saveDraft = async () => {
+    const unlayer = emailEditorRef.current?.editor;
+
+    unlayer?.exportHtml(async (data) => {
+      const { design } = data;
+      // Server action
+      await saveEmail({
+        title: subjectTitle,
+        content: JSON.stringify(design),
+        newsLetterOwnerId: user?.id!,
+      }).then((res: any) => {
+        console.log(res)
+        toast.success(res.message);
+        history.push("/dashboard/write");
+      });
+    });
+  };
+
+  const getEmailDetails = async () => {
+    await GetEmailDetails({
+      title: subjectTitle,
+      newsLetterOwnerId: user?.id!,
+    }).then((res: any) => {
+      if (res) {
+        setJsonData(JSON.parse(res?.content));
+      }
+      setLoading(false);
+    });
+  };
 
   return (
     <>
-    
+    {!loading && (
       <div className="w-full h-[90vh] relative">
         <EmailEditor minHeight={"80vh"} ref={emailEditorRef} onReady={onReady}/>
         <div className="absolute bottom-0 flex items-center justify-end gap-4 right-0 w-full border-t p-3">
@@ -47,7 +83,7 @@ const EmailEditorComponent = ({ subjectTitle }: { subjectTitle: string }) => {
           </Button>
         </div>
       </div>
-   
+   )}
   </>
   )
 }

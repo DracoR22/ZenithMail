@@ -41,7 +41,7 @@ const DashboardItems = ({ bottomContent }: { bottomContent?: boolean }) => {
            {sideBarBottomItems.map(
             (item: DashboardSideBarTypes, index: number) => (
               <Link key={index} className={`p-2 py-2 flex items-center font-medium hover:bg-indigo-500/20 transition ${item.url === activeRoute && "bg-indigo-500/20"}`}
-                href={item.url === "/" ? `/subscribe?username=${user?.username}` : item.url}>
+                href={item.url === "/" ? `/subscribe?username=${user?.firstName}` : item.url}>
                 <span className={`text-xl mr-2 ${item.url === activeRoute && "text-[#463bbd]"}`}>
                   {item.icon}
                 </span>
