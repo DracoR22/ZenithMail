@@ -15,8 +15,7 @@ const SubscribersChart = () => {
 
   const data: subscribersAnalyticsData[] = [];
 
-  subscribersData &&
-    subscribersData?.last7Months?.forEach((item: subscribersAnalyticsData) => {
+  subscribersData && subscribersData?.last7Months?.forEach((item: subscribersAnalyticsData) => {
       data.push({
         month: item?.month,
         count: item?.count,

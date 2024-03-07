@@ -6,16 +6,25 @@ import { NextUIProvider } from "@nextui-org/react";
 import { useUser } from "@clerk/nextjs";
 import { Toaster } from "react-hot-toast"
 import DashboardSidebar from "../widgets/dashboard/sidebar/dashboard-sidebar";
+import { addStripe } from "@/actions/add-stripe";
 
 const Providers = ({ children }: PropsWithChildren) => {
 
    const pathname = usePathname()
 
-   const { isLoaded } = useUser()
+   const { isLoaded, user } = useUser()
+
+   const isStripeCustomerIdHas = async () => {
+    await addStripe();
+  };
 
    if (!isLoaded) {
       return null
-   }
+   } else {
+    if (user) {
+      isStripeCustomerIdHas();
+    }
+  }
 
   return (
     <NextUIProvider>

@@ -1,7 +1,11 @@
+import useSubscribersData from "@/shared/hooks/use-subscribers-data"
 import { ICONS } from "@/shared/utils/icons"
 import { Slider } from "@nextui-org/react"
 
 const UserPlan = () => {
+
+  const { data, loading } = useSubscribersData()
+
   return (
     <div className="w-full my-3 p-3 bg-[#FDF1F8] rounded hover:shadow-xl cursor-pointer">
     <div className="w-full flex items-center">

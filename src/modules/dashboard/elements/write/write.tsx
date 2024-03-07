@@ -1,5 +1,6 @@
 'use client'
 
+import { deleteEmail } from "@/actions/delete-email";
 import { getEmails } from "@/actions/get-emails";
 import { ICONS } from "@/shared/utils/icons";
 import { useClerk } from "@clerk/nextjs";
@@ -43,8 +44,11 @@ const Write = () => {
      };
 
      const deleteHandler = async (id: string) => {
-        
-     }
+      await deleteEmail({ emailId: id }).then((res) => {
+        FindEmails();
+      });
+    };
+  
   
   return (
     <div className="w-full flex p-5 flex-wrap gap-6 relative">

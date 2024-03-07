@@ -3,6 +3,7 @@
 import { GetEmailDetails } from "@/actions/get-email-details";
 import { saveEmail } from "@/actions/save-email";
 import { DefaultJsonData } from "@/assets/mails/default";
+import { sendEmail } from "@/shared/utils/email-sender";
 import { useClerk } from "@clerk/nextjs";
 import { Button } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
@@ -22,11 +23,20 @@ const EmailEditorComponent = ({ subjectTitle }: { subjectTitle: string }) => {
 
   const exportHtml = () => {
     const unlayer = emailEditorRef.current?.editor;
+
     unlayer?.exportHtml(async (data) => {
       const { design, html } = data;
       setJsonData(design);
+      await sendEmail({
+        userEmail: ["monkmonkey56@gmail.com"],
+        subject: subjectTitle,
+        content: html,
+      }).then((res) => {
+        toast.success("Email sent successfully!");
+        history.push("/dashboard/write");
+      });
     });
-  };   
+  };
 
   useEffect(() => {
     getEmailDetails();
