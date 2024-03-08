@@ -80,8 +80,8 @@ const PricingCard = ({ active }: { active: string }) => {
           </div>
         ))}
         <br />
-        <Button onClick={() => handleSubscription({ price: active === 'Monthly' ? '49' : '42' })}
-        color="primary" className="w-full text-xl !py-6">
+        <Button onClick={() => handleSubscription({ price: active === 'Monthly' ? 'price_1OrXSTJWmpkzwGGM0ZBu7ypR' : 'price_1OrXWSJWmpkzwGGMzVZWWmuL' })}
+         color="primary" className="w-full text-xl !py-6">
           Get Started
         </Button>
         <p className="pt-1 opacity-[.7] text-center">
@@ -115,7 +115,8 @@ const PricingCard = ({ active }: { active: string }) => {
           </div>
         ))}
         <br />
-        <Button color="primary" className="w-full text-xl !py-6">
+        <Button onClick={() => handleSubscription({ price: active === 'Monthly' ? 'price_1OrXR7JWmpkzwGGMQmAt0q9L' : 'price_1OrXWmJWmpkzwGGMO8dL5dsa' })}
+        color="primary" className="w-full text-xl !py-6">
           Get Started
         </Button>
         <p className="pt-1 opacity-[.7] text-center">
