@@ -7,11 +7,6 @@
   Create and run beautiful email marketing campaigns in minutes
 </p>
 
-<div>
-  <img src="/public/z2.png">
-  <h1 align="center"ZenithMail</h1>
-</div>
-
 ### Key Features:
 
 - 🛠️ Email drag and drop editor
@@ -22,6 +17,11 @@
 - 🌟 Clean, modern UI on top of NextUI
 - 🔑 Authentication using Stripe
 - ⌨️ 100% written in TypeScript
+
+<div>
+  <img src="/public/z2.png">
+  <h1 align="center"ZenithMail</h1>
+</div>
 
 
 ### Prerequisites
