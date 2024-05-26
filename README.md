@@ -15,13 +15,11 @@
 - 🖥️ AWS is used for sending the emails
 - 🛍️ Emails can be completly automated
 - 🌟 Clean, modern UI on top of NextUI
-- 🔑 Authentication using Stripe
+- 🔑 Authentication using Clerk
 - ⌨️ 100% written in TypeScript
 
-<div>
-  <img src="/public/z2.png">
-  <h1 align="center"ZenithMail</h1>
-</div>
+###  Create beautiful email templates in just minutes
+<img src="/public/z2.png">
 
 
 ### Prerequisites
